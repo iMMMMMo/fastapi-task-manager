@@ -1,6 +1,11 @@
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from datetime import datetime, timezone
+
+
+if TYPE_CHECKING:
+    from app.models.project import Project
+    from app.models.user import User
 
 
 class TaskBase(SQLModel):
@@ -18,4 +23,6 @@ class Task(TaskBase, table=True):
     assignee_id: Optional[int] = Field(foreign_key="user.id")
 
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    
     project: Optional["Project"] = Relationship(back_populates="tasks")
+    assignee: Optional["User"] = Relationship(back_populates="assigned_tasks")
