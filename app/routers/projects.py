@@ -13,7 +13,7 @@ router = APIRouter(prefix="/projects", tags=["Projects"])
 
 @router.post("/", response_model=ProjectRead, status_code=status.HTTP_201_CREATED)
 def create_project(data: ProjectCreate, db: Session = Depends(get_session), current_user: User = Depends(get_current_user)):
-    project = Project(**data.dict(), owner_id=current_user.id)
+    project = Project(**data.model_dump(), owner_id=current_user.id)
     db.add(project)
     db.commit()
     db.refresh(project)
