@@ -26,7 +26,7 @@ def create_task(data: TaskCreate, db: Session = Depends(get_session), current_us
         if not user:
             raise HTTPException( status_code=400, detail=f"User with id {data.assignee_id} does not exist.")
         
-    task = Task(**data.dict())
+    task = Task(**data.model_dump())
     db.add(task)
     db.commit()
     db.refresh(task)
@@ -60,7 +60,7 @@ def update_task(task_id: int, data: TaskUpdate, db: Session = Depends(get_sessio
     if task.project.owner_id != current_user.id:
         raise HTTPException(status_code=403, detail="Not authorized.")
     
-    update_data = data.dict(exclude_unset=True)
+    update_data = data.model_dump(exclude_unset=True)
 
     if "project_id" in update_data:
         project = db.get(Project, update_data["project_id"])

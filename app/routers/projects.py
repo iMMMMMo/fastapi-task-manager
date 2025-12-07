@@ -48,7 +48,7 @@ def update_project(project_id: int, data: ProjectUpdate, db: Session = Depends(g
     if project.owner_id != current_user.id:
         raise HTTPException(status_code=403, detail="Not authorized.")
 
-    update_data = data.dict(exclude_unset=True)
+    update_data = data.model_dump(exclude_unset=True)
     for key, value in update_data.items():
         setattr(project, key, value)
 

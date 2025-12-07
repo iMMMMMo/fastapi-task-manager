@@ -25,3 +25,4 @@ class TaskUpdate(SQLModel):
     status: Optional[str] = None
     assignee_id: Optional[int] = None
     due_date: Optional[datetime] = None
+    project_id: Optional[int] = None
