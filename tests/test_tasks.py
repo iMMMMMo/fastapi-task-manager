@@ -44,7 +44,7 @@ def test_create_task_fails_if_project_not_found(client):
         "project_id": 99999
     }, headers=headers)
 
-    assert response.status_code == 400
+    assert response.status_code == 404
 
 
 def test_create_task_fails_if_project_belongs_to_other_user(client):
@@ -71,7 +71,7 @@ def test_create_task_with_assignee_validation(client):
         "assignee_id": 999
     }, headers=headers)
 
-    assert response.status_code == 400
+    assert response.status_code == 404
 
 
 #
@@ -198,7 +198,7 @@ def test_update_task_fails_if_new_project_invalid(client):
 
     response = client.put(f"/api/v1/tasks/{task_id}", json={"project_id": 99999}, headers=headers)
 
-    assert response.status_code == 400
+    assert response.status_code == 404
 
 
 #
