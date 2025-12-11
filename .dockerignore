@@ -9,3 +9,4 @@ pytest_cache/
 .gitignore
 Dockerfile
 docker-compose.yml
+docker-compose.dev.yml
