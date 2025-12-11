@@ -1,7 +1,7 @@
 """sync_models_to_database
 
 Revision ID: 24c8f6d2f086
-Revises: 7e29dfc015e6
+Revises: 2a46a9f57411
 Create Date: 2025-12-05 12:54:37.424331
 
 """
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision: str = '24c8f6d2f086'
-down_revision: Union[str, Sequence[str], None] = '7e29dfc015e6'
+down_revision: Union[str, Sequence[str], None] = '2a46a9f57411'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
