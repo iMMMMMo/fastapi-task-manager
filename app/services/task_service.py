@@ -47,7 +47,6 @@ class TaskService:
             if project.owner_id != user_id:
                 raise PermissionDeniedException("You cannot move task to another user's project")
 
-        # Sprawdzenie nowego assignee (jeśli zmienia się)
         if "assignee_id" in data and data["assignee_id"] is not None:
             user = db.get(User, data["assignee_id"])
             if not user:
